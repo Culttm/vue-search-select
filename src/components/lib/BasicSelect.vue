@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown"
-       :class="{ 'active visible':showMenu, 'error': isError }"
+       :class="{ 'active visible':showMenu, 'error': isError, 'disabled': disabled }"
        @click="openOptions">
     <slot name="trigger-icon" class="trigger-icon"></slot>
     <input class="search"
@@ -46,12 +46,17 @@
   export default {
     mixins: [commonMixin],
     props: {
+      disabled: {
+        type: Boolean
+      },
       options: {
         type: Array
       },
       selectedOption: {
         type: Object,
-        default: () => { return { value: '', text: '' } }
+        default: () => {
+          return { value: '', text: '' }
+        }
       }
     },
     data () {
@@ -119,7 +124,9 @@
         }
       },
       openOptions () {
-        common.openOptions(this)
+        if (!this.disabled) {
+          common.openOptions(this)
+        }
       },
       blurInput () {
         common.blurInput(this)

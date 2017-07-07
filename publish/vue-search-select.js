@@ -17988,6 +17988,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = {
 	  mixins: [_commonMixin2.default],
 	  props: {
+	    disabled: {
+	      type: Boolean
+	    },
 	    options: {
 	      type: Array
 	    },
@@ -18066,7 +18069,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    openOptions: function openOptions() {
-	      _common2.default.openOptions(this);
+	      if (!this.disabled) {
+	        _common2.default.openOptions(this);
+	      }
 	    },
 	    blurInput: function blurInput() {
 	      _common2.default.blurInput(this);
@@ -19709,14 +19714,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _c('div', {
 	    staticClass: "dropdown",
 	    class: {
-	      'active visible': _vm.showMenu, 'error': _vm.isError
+	      'active visible': _vm.showMenu, 'error': _vm.isError, 'disabled': _vm.disabled
 	    },
 	    on: {
 	      "click": _vm.openOptions
 	    }
-	  }, [_c('i', {
-	    staticClass: "dropdown icon"
-	  }), _vm._v(" "), _c('input', {
+	  }, [_vm._t("trigger-icon"), _vm._v(" "), _c('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -19769,6 +19772,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        $event.preventDefault();
 	      }
 	    }
+	  }, [_c('div', {
+	    staticClass: "menu__inner"
 	  }, [_vm._l((_vm.filteredOptions), function(option, idx) {
 	    return [_c('div', {
 	      staticClass: "item",
@@ -19785,8 +19790,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _vm.pointerSet(idx)
 	        }
 	      }
-	    }, [_vm._v("\n        " + _vm._s(option.text) + "\n      ")])]
-	  })], 2)])
+	    }, [_vm._v("\n          " + _vm._s(option.text) + "\n        ")])]
+	  })], 2)])], 2)
 	},staticRenderFns: []}
 
 /***/ }),
