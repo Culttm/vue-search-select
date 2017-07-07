@@ -49,23 +49,3 @@
     </div>
   </div>
 </template>
-
-<style src="semantic-ui-css/semantic.css"></style>
-<style>
-  .flexbox {
-    display: flex;
-  }
-  .flex-menu {
-    width: 250px;
-  }
-  .flex-content {
-    flex-grow: 1;
-  }
-  .flex-result {
-    min-width: 400px;
-    width: 400px;
-  }
-  .flexbox > * {
-    margin: 0 20px;
-  }
-</style>

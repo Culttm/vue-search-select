@@ -1,7 +1,7 @@
 {
-  "name": "vue-search-select",
+  "name": "vue-search-select-2",
   "version": "2.3.9",
-  "description": "A Vue.js search select form component",
+  "description": "A Vue.js search select form component without styles",
   "author": "moreta <moretajoo@gmail.com>",
   "license": "MIT",
   "main": "publish/vue-search-select.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moreta/vue-search-select.git"
+    "url": "git+https://github.com/Culttm/vue-search-select.git"
   },
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -107,5 +107,6 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "dependencies": {}
 }

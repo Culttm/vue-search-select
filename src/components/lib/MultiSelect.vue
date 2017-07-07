@@ -49,7 +49,7 @@
   import _ from 'lodash'
   import common from './common'
   import commonMixin from './commonMixin'
-  
+
   export default {
     mixins: [commonMixin],
     props: {
@@ -193,11 +193,3 @@
     }
   }
 </script>
-<style scoped src="semantic-ui-label/label.css"></style>
-<style scoped src="semantic-ui-dropdown/dropdown.css"></style>
-<style>
-  /* Menu Item Hover for Key event */
-  .ui.dropdown .menu > .item.current {
-    background: rgba(0, 0, 0, 0.05);
-  }
-</style>
