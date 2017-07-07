@@ -2,7 +2,7 @@
   <div class="dropdown"
        :class="{ 'active visible':showMenu, 'error': isError }"
        @click="openOptions">
-    <i class="dropdown icon"></i>
+    <slot name="trigger-icon" class="trigger-icon"></slot>
     <input class="search"
            autocomplete="off"
            tabindex="0"
@@ -23,15 +23,17 @@
          :class="menuClass"
          :style="menuStyle"
          tabindex="-1">
-      <template v-for="(option, idx) in filteredOptions">
-        <div class="item"
-             :class="{ 'selected': option.selected, 'current': pointer === idx }"
-             @click.stop="selectItem(option)"
-             @mousedown="mousedownItem"
-             @mouseenter="pointerSet(idx)">
-          {{option.text}}
-        </div>
-      </template>
+      <div class="menu__inner">
+        <template v-for="(option, idx) in filteredOptions">
+          <div class="item"
+               :class="{ 'selected': option.selected, 'current': pointer === idx }"
+               @click.stop="selectItem(option)"
+               @mousedown="mousedownItem"
+               @mouseenter="pointerSet(idx)">
+            {{option.text}}
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
