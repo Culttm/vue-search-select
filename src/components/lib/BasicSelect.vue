@@ -1,12 +1,13 @@
 <template>
   <div class="dropdown"
-       :class="{ 'active visible':showMenu, 'error': isError, 'disabled': disabled }"
+       :class="{ 'active visible':showMenu, 'error': isError, 'disabled': !options.length || options.length === 0 }"
        @click="openOptions">
-    <slot name="trigger-icon" class="trigger-icon"></slot>
+    <slot name="trigger-icon"></slot>
     <input class="search"
            autocomplete="off"
            tabindex="0"
            v-model="searchText"
+           v-if="options.length > 0"
            ref="input"
            @blur="blurInput"
            @keydown.up="prevItem"
@@ -45,6 +46,9 @@
 
   export default {
     mixins: [commonMixin],
+    mounted(){
+        console.log(this.$slots)
+    },
     props: {
       disabled: {
         type: Boolean
@@ -124,7 +128,7 @@
         }
       },
       openOptions () {
-        if (!this.disabled) {
+        if (this.options.length > 0) {
           common.openOptions(this)
         }
       },

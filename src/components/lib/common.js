@@ -1,9 +1,11 @@
 export default {
   // cursor on input
   openOptions (self) {
-    self.$refs.input.focus()
-    self.showMenu = true
-    self.mousedownState = false
+    if(self.options){
+      self.$refs.input.focus()
+      self.showMenu = true
+      self.mousedownState = false
+    }
   },
   blurInput (self) {
     if (!self.mousedownState) {

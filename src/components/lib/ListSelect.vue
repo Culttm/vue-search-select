@@ -3,11 +3,15 @@
   import _ from 'lodash'
   import BasicSelect from './BasicSelect.vue'
   import commonMixin from './commonMixin'
-  
+
   export default {
     mixins: [commonMixin],
     render: function (createElement) {
+        console.log('this.$slots', this.$slots)
       return createElement(BasicSelect, {
+        scopedSlots: {
+          'trigger-icon': () => this.$slots['trigger-icon']
+        },
         props: {
           options: this.options,
           selectedOption: this.item,
@@ -40,14 +44,14 @@
     computed: {
       options () {
         return this.list.map((e, i) => {
-          return { value: e[this.optionValue], text: this.buildText(e) }
+          return {value: e[this.optionValue], text: this.buildText(e)}
         })
       },
       item () {
         if (this.selectedItem) {
-          return { value: this.selectedItem[this.optionValue], text: this.buildText(this.selectedItem) }
+          return {value: this.selectedItem[this.optionValue], text: this.buildText(this.selectedItem)}
         } else {
-          return { value: '', text: '' }
+          return {value: '', text: ''}
         }
       }
     },

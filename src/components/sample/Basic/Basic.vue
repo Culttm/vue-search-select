@@ -12,7 +12,6 @@
                       :selected-option="item"
                       placeholder="select item"
                       @select="onSelect">
-            <div slot="trigger-icon">trigger-icon</div>
         </basic-select>
       </div>
     </div>

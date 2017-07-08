@@ -281,9 +281,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = {
 	  openOptions: function openOptions(self) {
-	    self.$refs.input.focus();
-	    self.showMenu = true;
-	    self.mousedownState = false;
+	    if (self.options) {
+	      self.$refs.input.focus();
+	      self.showMenu = true;
+	      self.mousedownState = false;
+	    }
 	  },
 	  blurInput: function blurInput(self) {
 	    if (!self.mousedownState) {
@@ -17987,6 +17989,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports.default = {
 	  mixins: [_commonMixin2.default],
+	  mounted: function mounted() {
+	    console.log(this.$slots);
+	  },
+	
 	  props: {
 	    disabled: {
 	      type: Boolean
@@ -18069,7 +18075,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    openOptions: function openOptions() {
-	      if (!this.disabled) {
+	      if (this.options.length > 0) {
 	        _common2.default.openOptions(this);
 	      }
 	    },
@@ -18132,7 +18138,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = {
 	  mixins: [_commonMixin2.default],
 	  render: function render(createElement) {
+	    var _this = this;
+	
+	    console.log('this.$slots', this.$slots);
 	    return createElement(_BasicSelect2.default, {
+	      scopedSlots: {
+	        'trigger-icon': function triggerIcon() {
+	          return _this.$slots['trigger-icon'];
+	        }
+	      },
 	      props: {
 	        options: this.options,
 	        selectedOption: this.item,
@@ -18164,10 +18178,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  computed: {
 	    options: function options() {
-	      var _this = this;
+	      var _this2 = this;
 	
 	      return this.list.map(function (e, i) {
-	        return { value: e[_this.optionValue], text: _this.buildText(e) };
+	        return { value: e[_this2.optionValue], text: _this2.buildText(e) };
 	      });
 	    },
 	    item: function item() {
@@ -18191,13 +18205,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    onSelect: function onSelect(option) {
-	      var _this2 = this;
+	      var _this3 = this;
 	
 	      if (_lodash2.default.isEmpty(option)) {
 	        this.$emit('select', option);
 	      } else {
 	        var item = this.list.find(function (e, i) {
-	          return e[_this2.optionValue] === option.value;
+	          return e[_this3.optionValue] === option.value;
 	        });
 	        this.$emit('select', item);
 	      }
@@ -19714,12 +19728,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _c('div', {
 	    staticClass: "dropdown",
 	    class: {
-	      'active visible': _vm.showMenu, 'error': _vm.isError, 'disabled': _vm.disabled
+	      'active visible': _vm.showMenu, 'error': _vm.isError, 'disabled': !_vm.options.length || _vm.options.length === 0
 	    },
 	    on: {
 	      "click": _vm.openOptions
 	    }
-	  }, [_vm._t("trigger-icon"), _vm._v(" "), _c('input', {
+	  }, [_vm._t("trigger-icon"), _vm._v(" "), (_vm.options.length > 0) ? _c('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -19756,7 +19770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _vm.searchText = $event.target.value
 	      }
 	    }
-	  }), _vm._v(" "), _c('div', {
+	  }) : _vm._e(), _vm._v(" "), _c('div', {
 	    staticClass: "text",
 	    class: _vm.textClass
 	  }, [_vm._v(_vm._s(_vm.inputText) + "\n  ")]), _vm._v(" "), _c('div', {
